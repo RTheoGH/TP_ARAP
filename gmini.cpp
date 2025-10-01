@@ -190,7 +190,6 @@ void updateSystem() {
             it != edgeAndVertexWeights.get_weight_of_adjacent_edges_it_end(v) ; ++it) {
 
             unsigned int vNeighbor = it->first;
-            double w = it->second;
             
             // WHAT TO PUT HERE ??????? How to update the entries of A ?
             unsigned int x = v * 3;
@@ -198,13 +197,13 @@ void updateSystem() {
 
             unsigned int row = 3 * equationIndex;
 
-            arapLinearSystem.A(row,x) = -1.0*w;
-            arapLinearSystem.A(row+1,x+1) = -1.0*w;
-            arapLinearSystem.A(row+2,x+2) = -1.0*w;
+            arapLinearSystem.A(row,x) = -1.0;
+            arapLinearSystem.A(row+1,x+1) = -1.0;
+            arapLinearSystem.A(row+2,x+2) = -1.0;
 
-            arapLinearSystem.A(row,xN) = 1.0*w;
-            arapLinearSystem.A(row+1,xN+1) = 1.0*w;
-            arapLinearSystem.A(row+2,xN+2) = 1.0*w;
+            arapLinearSystem.A(row,xN) = 1.0;
+            arapLinearSystem.A(row+1,xN+1) = 1.0;
+            arapLinearSystem.A(row+2,xN+2) = 1.0;
 
             equationIndex++;
         }
@@ -249,7 +248,6 @@ void updateMeshVertexPositionsFromARAPSolver() {
                 it != edgeAndVertexWeights.get_weight_of_adjacent_edges_it_end(v) ; ++it) {
 
                 unsigned int vNeighbor = it->first;
-                double w = it->second;
 
                 Eigen::VectorXd rotatedEdge(3);
                 for( unsigned int coord = 0 ; coord < 3 ; ++coord )
@@ -259,9 +257,9 @@ void updateMeshVertexPositionsFromARAPSolver() {
                 // WHAT TO PUT HERE ??????? How to update the entries of b ?
                 unsigned int row = 3 * equationIndex;
                 
-                arapLinearSystem.b(row) = rotatedEdge[0]*w;
-                arapLinearSystem.b(row+1) = rotatedEdge[1]*w;
-                arapLinearSystem.b(row+2) = rotatedEdge[2]*w;
+                arapLinearSystem.b(row) = rotatedEdge[0];
+                arapLinearSystem.b(row+1) = rotatedEdge[1];
+                arapLinearSystem.b(row+2) = rotatedEdge[2];
                 equationIndex++;
             }
         }
