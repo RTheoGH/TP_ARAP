@@ -198,13 +198,13 @@ void updateSystem() {
 
             unsigned int row = 3 * equationIndex;
 
-            arapLinearSystem.A(row,x) = 1.0*w;
-            arapLinearSystem.A(row+1,x+1) = 1.0*w;
-            arapLinearSystem.A(row+2,x+2) = 1.0*w;
+            arapLinearSystem.A(row,x) = -1.0*w;
+            arapLinearSystem.A(row+1,x+1) = -1.0*w;
+            arapLinearSystem.A(row+2,x+2) = -1.0*w;
 
-            arapLinearSystem.A(row,xN) = -1.0*w;
-            arapLinearSystem.A(row+1,xN+1) = -1.0*w;
-            arapLinearSystem.A(row+2,xN+2) = -1.0*w;
+            arapLinearSystem.A(row,xN) = 1.0*w;
+            arapLinearSystem.A(row+1,xN+1) = 1.0*w;
+            arapLinearSystem.A(row+2,xN+2) = 1.0*w;
 
             equationIndex++;
         }
@@ -259,9 +259,9 @@ void updateMeshVertexPositionsFromARAPSolver() {
                 // WHAT TO PUT HERE ??????? How to update the entries of b ?
                 unsigned int row = 3 * equationIndex;
                 
-                arapLinearSystem.b(row) = w * rotatedEdge[0];
-                arapLinearSystem.b(row+1) = w * rotatedEdge[1];
-                arapLinearSystem.b(row+2) = w * rotatedEdge[2];
+                arapLinearSystem.b(row) = rotatedEdge[0]*w;
+                arapLinearSystem.b(row+1) = rotatedEdge[1]*w;
+                arapLinearSystem.b(row+2) = rotatedEdge[2]*w;
                 equationIndex++;
             }
         }
